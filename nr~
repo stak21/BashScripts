@@ -1,3 +1,33 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+#creates a executable shebang file
+nx () {
+    echo "#!/bin/bash" >> $1
+    echo >> $1
+    chmod u+x $1
+    emacs +2 $1
+}
+
 #creates a README template
 nr() {
     echo "# phTitle
@@ -11,7 +41,7 @@ File|Task
 phTable
 
 ## Author
-Shoji Takashima #edit this for other authors
+Shoji Takashima
 " >> README.md
     editNR
     askCommit
@@ -21,20 +51,7 @@ editNR() {
     read title
     sed -i "s/phTitle/$title/" ./README.md
     echo "Type in a description"
-    userDesc = 
-    read desc
-    userDesc += "$desc"
-    echo "If you want to add more press enter: else enter anything else"
-    read ans
-    while [[ $ans != @("") ]]
-    do       
-	echo "Enter a description'
-	read moreDesc
-	userDesc += "$moreDesc"
-	echo "If you want to add more press enter: else enter anything else"
-	read ans
-   done
-
+    userDesc
     sed -i "s/phDescription/$description/" ./README.md
     echo "enter 1 || 2 : onlyTask = 1, task and description = 2\n 00 to cancel else I will ask again"
     read ans
@@ -73,7 +90,19 @@ editNR() {
     sed -i "s/phTable/\n/" README.md
 
 }
-
+userDesc() {
+    userDesc = 
+    read desc
+    userDesc += "$desc"
+    echo "If you want to add more press enter: else enter 1"
+    read ans
+    while [[ $ans != @("") ]]
+    do
+	read moreDesc
+	userDesc += "$moreDesc"
+	echo $userDesc
+   done
+}
 askCommit() {
     echo "Enter: <enter> : to git commit, 00 to quit"
     read ans
