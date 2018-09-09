@@ -1,7 +1,10 @@
 # nr
-Description
+---
+## Description
+
 This project in the System engineering & DevOps series is about:
 This is a little example of what this baby can do~
+!! This is a fun little thing I worked on, but its still easy to make your own readme without it. And could be faster? So if you find this script slower than you would be able to make it yourself! don't bother~
 For those of you who don't have a template for a README and a lot of people suggest
 keeping you README organize, this is great for you (although it is a lot more wwork if you want your README to be a couple lines)
 
@@ -9,7 +12,7 @@ Shoutout to Victor nguyen for giving us advice and letting me use his template, 
 Title
 Description
 task|answer
-and my script will[A
+and my script will
 let you copy and paste the title
 copy and paste the description
 and go thorugh the task one by and giving the answer if you want.
@@ -37,4 +40,5 @@ You can just type the title | and later on you can open your editor to go throug
 Enjoy!~ | easy coding
 ... | ...
 
-Author: Shoji Takashima
+## Author
+Shoji Takashima
