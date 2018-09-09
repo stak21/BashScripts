@@ -1,6 +1,9 @@
+#Note Change the author  on line 64
 #creates a README template
 nr() {
+     #validates title
   if [[ $# < 1 ]]; then echo "Error: Provide title"; return 1; fi
+  #creates template
   echo "# $1" > README.md
   echo "---" >> README.md
   echo "##Description" >> README.md
@@ -10,7 +13,7 @@ This project in the System engineering & DevOps series is about:" >> README.md
 EOF >> README.md
 ---
 ## Description
-
+#Enter your description here
 EOF
   echo "Type decription, Ctrl+D to end"
   cat >> README.md
@@ -18,14 +21,20 @@ EOF
 EOF >> README.md
 ---
 EOF
+#this will append * to your description
+#6 being the line to start on, $=EOF, &=append match,^.* = match 
+   sed -i '6,$s/^.*$/*&/' README.md
 echo "---
 File|Task
 ---|---" >> README.md
-    echo "enter 1 || 2 : onlyTask = 1, task and description = 2\n 00 to cancel else I will ask again"
+# Here users can create just the task or task and answer || cancel
+    echo "enter 1 || 2 : onlyTask = 1, task and description = 2"
+    echo "00 = cancel"
     read ans
     while [[ $ans != @(1|2|00) ]]
     do
-	echo "enter 1 || 2 : onlyTask = 1, task and description = 2\n 00 to cancel else I will ask again"
+	echo "enter 1 || 2 : onlyTask = 1, task and description = 2"
+	echo "00 = cancel ; else I will ask again"
 	read ans
     done
 #00 will delete the README
@@ -57,7 +66,7 @@ File|Task
     fi
     echo "
 ## Author" >>README.md
-echo " Shoji Takashima" >> README.md
+echo " Shoji Takashima" >> README.md # EDIT ME
 cat README.md
 askCommit
 }
