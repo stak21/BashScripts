@@ -6,10 +6,9 @@ This project in the System engineering & DevOps series is about:
 ---
 File|Task
 ---|---
-A little example | of what this can do
-String | "string"
-number | 1
-.. | ...
+a little example | of what this can do
+tsk1 | How are you going to improve your README?
+by using this | nr
 
 
 

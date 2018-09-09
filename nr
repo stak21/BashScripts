@@ -12,7 +12,7 @@ phTable
 
 ## Author
 Shoji Takashima #edit this for other authors
-" >> README.md
+" > README.md
     editNR
     askCommit
 }
@@ -35,7 +35,7 @@ editNR() {
 	read ans
    done
 
-    sed -i "s/phDescription/$description/" ./README.md
+    sed -i "s/phDescription/$userDesc/" ./README.md
     echo "enter 1 || 2 : onlyTask = 1, task and description = 2\n 00 to cancel else I will ask again"
     read ans
     while [[ $ans != @(1|2|00) ]]
