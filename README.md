@@ -1,5 +1,7 @@
 # nr
-#Description
+---
+##Description
+
 This project in the System engineering & DevOps series is about:
 This is a little example of what this baby can do~
 For those of you who don't have a template for a README and a lot of people suggest
@@ -37,4 +39,5 @@ You can just type the title | and later on you can open your editor to go throug
 Enjoy!~ | easy coding
 ... | ...
 
-Author: Shoji Takashima
+## Author
+Shoji Takashima
