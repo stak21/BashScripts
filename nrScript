@@ -1,41 +1,24 @@
 #creates a README template
 nr() {
-    echo "# phTitle
+  if [[ $# < 1 ]]; then echo "Error: Provide title"; return 1; fi
+  echo "# $1" > README.md
+  echo "Description
+This project in the System engineering & DevOps series is about:" >> README.md
+  cat <<EOF
+EOF >> README.md
 ---
 ## Description
-Description
-This project in the System engineering & DevOps series is about: phDescription
----
-File|Task
----|---
-phTable
 
-## Author
-Shoji Takashima #Edit this for other authors
-" > README.md
-    editNR
-    askCommit
-}
-editNR() {
-    echo "Type in a title"
-    read title
-    sed -i "s/phTitle/$title/" ./README.md
-    echo "Type in a description"
-    userDesc =
-    read desc
-    userDesc+="$desc"
-    echo "If you want to add more press enter: else enter anything else"
-    read ans
-    while [[ $ans != @("") ]]
-    do       
-	echo "Enter a description"
-	read moreDesc
-	userDesc+="$moreDesc"
-	echo "If you want to add more press enter: else enter anything else"
-	read ans
-   done
-echo $userDesc
-    sed -i "s/phDescription/$userDesc/" ./README.md
+EOF
+  echo "Type decription, Ctrl+D to end"
+  cat >> README.md
+  cat <<EOF
+EOF >> README.md
+---
+EOF
+echo "---
+File|Task
+---|---" >> README.md
     echo "enter 1 || 2 : onlyTask = 1, task and description = 2\n 00 to cancel else I will ask again"
     read ans
     while [[ $ans != @(1|2|00) ]]
@@ -43,8 +26,7 @@ echo $userDesc
 	echo "enter 1 || 2 : onlyTask = 1, task and description = 2\n 00 to cancel else I will ask again"
 	read ans
     done
-
-
+#00 will delete the README
     if (($ans == 00)); then
 	rm ./README.md
 	echo "I have deleted ./README.md. Have a nice day"
@@ -52,14 +34,15 @@ echo $userDesc
     fi
     echo "How many tasks are there?"
     read number
-
+#1 will just input the task
     if (($ans == 1)); then
 	for ((i = 1; i <= number; i++))
 	do 
 	    echo "Type in task title"
 	    read task
-	    sed -i "s/phTable/$task | \nphTable/" README.md
+	    echo "$task | " >> README.md
 	done
+#2 will do both task and description
     elif (($ans == 2)); then
 	for ((i = 1; i <= number; i++))
 	do
@@ -67,11 +50,13 @@ echo $userDesc
 	    read task
 	    echo "Type in the description of the task or answer"
 	    read answer
-	    sed -i "s/phTable/$task | $answer\nphTable/" README.md
+	    echo "$task | $answer" >> README.md
 	done
     fi
-    sed -i "s/phTable/\n/" README.md
-
+    echo "
+Author: Shoji Takashima" >> README.md #edit this for other author
+cat README.md
+askCommit
 }
 
 askCommit() {
@@ -95,4 +80,3 @@ else
     git push origin master
 fi
 }
-
