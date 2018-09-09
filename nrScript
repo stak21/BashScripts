@@ -2,7 +2,9 @@
 nr() {
   if [[ $# < 1 ]]; then echo "Error: Provide title"; return 1; fi
   echo "# $1" > README.md
-  echo "Description
+  echo "---" >> README.md
+  echo "##Description" >> README.md
+  echo "
 This project in the System engineering & DevOps series is about:" >> README.md
   cat <<EOF
 EOF >> README.md
@@ -54,7 +56,8 @@ File|Task
 	done
     fi
     echo "
-Author: Shoji Takashima" >> README.md #edit this for other author
+## Author" >>README.md
+echo " Shoji Takashima" >> README.md
 cat README.md
 askCommit
 }
@@ -80,3 +83,4 @@ else
     git push origin master
 fi
 }
+
