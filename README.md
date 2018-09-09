@@ -1,5 +1,5 @@
 # nr
-Description
+#Description
 This project in the System engineering & DevOps series is about:
 This is a little example of what this baby can do~
 For those of you who don't have a template for a README and a lot of people suggest
@@ -9,7 +9,7 @@ Shoutout to Victor nguyen for giving us advice and letting me use his template, 
 Title
 Description
 task|answer
-and my script will[A
+and my script will
 let you copy and paste the title
 copy and paste the description
 and go thorugh the task one by and giving the answer if you want.
