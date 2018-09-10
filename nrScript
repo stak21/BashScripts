@@ -1,14 +1,15 @@
-#Note Change the author  on line 64
+#Note Change the author  on line 68
 #creates a README template
 nr() {
-     #validates title
-  if [[ $# < 1 ]]; then echo "Error: Provide title"; return 1; fi
   #creates template
-  echo "# $1" > README.md
+  echo "Enter title: "
+  read title
+  echo "#$title" > README.md
   echo "---" >> README.md
-  echo "##Description" >> README.md
+  echo "## Description" >> README.md
   echo "
-This project in the System engineering & DevOps series is about:" >> README.md
+This project in the System engineering & DevOps series is about:
+" >> README.md
   cat <<EOF
 EOF >> README.md
 ---
@@ -23,18 +24,24 @@ EOF >> README.md
 EOF
 #this will append * to your description
 #6 being the line to start on, $=EOF, &=append match,^.* = match 
-   sed -i '6,$s/^.*$/*&/' README.md
+   sed -i '7,$s/^.*$/*&\n/' README.md
 echo "---
 File|Task
 ---|---" >> README.md
 # Here users can create just the task or task and answer || cancel
     echo "enter 1 || 2 : onlyTask = 1, task and description = 2"
     echo "00 = cancel"
+    echo "Special Case: Create files"
+    echo "Enter 11: task + files"
+    echo "Enter 22: task + answer + files"
     read ans
-    while [[ $ans != @(1|2|00) ]]
+    while [[ $ans != @(1|2|00||11|22) ]]
     do
 	echo "enter 1 || 2 : onlyTask = 1, task and description = 2"
 	echo "00 = cancel ; else I will ask again"
+	echo "Special Case: Create files"
+        echo "Enter 11: task + files"
+        echo "Enter 22: task + answer + files"
 	read ans
     done
 #00 will delete the README
@@ -46,15 +53,18 @@ File|Task
     echo "How many tasks are there?"
     read number
 #1 will just input the task
-    if (($ans == 1)); then
+    if (($ans == 1 || $ans == 11)); then
 	for ((i = 1; i <= number; i++))
 	do 
 	    echo "Type in task title"
 	    read task
 	    echo "$task | " >> README.md
+	    if (($ans == 11)); then
+               crFile
+            fi
 	done
 #2 will do both task and description
-    elif (($ans == 2)); then
+    elif (($ans == 2 || $ans == 22)); then
 	for ((i = 1; i <= number; i++))
 	do
 	    echo "Type in task title"
@@ -62,6 +72,9 @@ File|Task
 	    echo "Type in the description of the task or answer"
 	    read answer
 	    echo "$task | $answer" >> README.md
+	    if (($ans == 22)); then
+                crFile
+            fi
 	done
     fi
     echo "
@@ -93,3 +106,8 @@ else
 fi
 }
 
+crFile() {
+echo "Enter file name: "
+read fileN
+touch ./$fileN
+}
