@@ -60,7 +60,7 @@ File|Task
 	    read task
 	    echo "$task | " >> README.md
 	    if (($ans == 11)); then
-               crFile
+               crFile $task
             fi
 	done
 #2 will do both task and description
@@ -73,7 +73,7 @@ File|Task
 	    read answer
 	    echo "$task | $answer" >> README.md
 	    if (($ans == 22)); then
-                crFile
+                crFile $task
             fi
 	done
     fi
@@ -107,7 +107,5 @@ fi
 }
 
 crFile() {
-echo "Enter file name: "
-read fileN
-touch ./$fileN
+touch ./$task
 }
