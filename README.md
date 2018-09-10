@@ -17,10 +17,15 @@ let you copy and paste the title
 copy and paste the description
 and go thorugh the task one by and giving the answer if you want.
 
-**To use this** ... go to your home directory and open .profile in your editor. copy and paste the code to the very and save/exit
-
-type in the terminal source ~/.profile (this will I think update the funcitons in there)
-When you create your repository or folder for the next project, type nr in the directory and go through the interactive guide to creating a clean README
+**To use this** ... 
+go to your home directory
+open .profile in your editor
+copy and paste the code in nrScript to the very end
+save/exit
+In the terminal type :
+"**source ~/.profile**" without the quotes //(this will I think update the funcitons in there)
+When you create your repository or folder for the next project
+type nr in the directory and go through the interactive guide to creating a clean README
 
 **Example:** 
 nr
