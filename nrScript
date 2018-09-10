@@ -107,5 +107,6 @@ fi
 }
 
 crFile() {
-touch ./$task
+echo "#!/bin/bash" > ./$task
+echo "" >> ./$task
 }
